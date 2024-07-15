@@ -56,7 +56,8 @@ survdata$WHO_2022 <- as.factor(survdata$WHO_2022)
 survdata$ELN2022_IPSSM <- as.factor(survdata$ELN2022_IPSSM)
 survdata$Cluster <- survdata$group
 survdata$Cluster <- as.factor(survdata$Cluster)
-levels(survdata$Cluster) <- LETTERS[1:9]
+lab <- c("UHR","HR1","NPM1","HR2","INT1","HR3","INT2","LR1","LR2")
+levels(survdata$Cluster) <- lab
 survdata <- survdata[grep("MDS/AML",survdata$ICC),]
 
 survdata <- survdata[!survdata$ELN2022_IPSSM=="IPSSM_NA",]
@@ -144,7 +145,7 @@ for(i in ipssm_vector){
 
 #
 
-pdf(file = "../analysis/figures/Supplementary_MDSAML_IPSSM_OS.pdf", width = 16.7, height = 10)
+pdf(file = "./figures/SuppS9.pdf", width = 16.7, height = 10)
 ggarrange(p$`IPSSM_Very-High`,p$IPSSM_High,
           p$`IPSSM_Moderate-High`,p$`IPSSM_Moderate-Low`, 
           p$IPSSM_Low,p$`IPSSM_Very-Low`, ncol = 3, nrow = 2 , labels = letters[1:6])

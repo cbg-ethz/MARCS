@@ -81,9 +81,8 @@ plot_clusters2 <- function (cluster_results, node_colours = "#fdae61", scale_ent
                                   node_size = node_size[ii, ], node_colours = node_colours, 
                                   directed = directed)
   }
-  lab <- c("UHR","HR1","NPM1","HR2","INT1","HR3","INT2","LR1","LR2")
-  ggpubr::ggarrange(plotlist = p_list, labels = paste("Cluster", 
-                                                      LETTERS[1:k_clust],"-",lab))
+  lab <- c("UHR","HR1","NPM1","HR2","INT2","HR3","INT1","LR1","LR2")
+  ggpubr::ggarrange(plotlist = p_list, labels = paste(lab)) #"Cluster", LETTERS[1:k_clust],"-",
 }
 
 library(entropy)
@@ -160,7 +159,7 @@ melted_data_sum <- melt(mutation_sum, id.vars = "Group.1")
 colnames(melted_data_sum)[1] <- "Cluster"
 levels(melted_data_sum$Cluster) <- LETTERS[1:length(unique(cluster_results$clustermembership))]
 
-lab <- c("UHR","HR1","NPM1","HR2","INT1","HR3","INT2","LR1","LR2")
+lab <- c("UHR","HR1","NPM1","HR2","INT2","HR3","INT1","LR1","LR2")
 
 melted_data_sum$Cluster[melted_data_sum$Cluster=="1"] <- lab[1]
 melted_data_sum$Cluster[melted_data_sum$Cluster=="2"] <- lab[2]
@@ -173,11 +172,16 @@ melted_data_sum$Cluster[melted_data_sum$Cluster=="8"] <- lab[8]
 melted_data_sum$Cluster[melted_data_sum$Cluster=="9"] <- lab[9]
 
 
-colours_clusters <- c("#000000","#772266","#117777","#7c1a29","#114477","#cd9bbc","#88CCAA","#117744","#77AADD")
+#colours_clusters <- c("#000000","#772266","#117777","#7c1a29","#114477","#cd9bbc","#88CCAA","#117744","#77AADD")
+colours_clusters <- c("#2f0000","#9B2226","#94D2BD","#BB3E03","#E9D8A6","#CA6702","#EE9B00","#0A9396","#005F73")
+
+
+
+
 # Stacked barplot (sum of mutations)
 barplot_sum0 <- ggplot(melted_data_sum, aes(x = variable, y = value, fill = Cluster)) +
   geom_bar(stat = "identity") +
-  scale_fill_manual(values=c("UHR"="#000000","HR1"="#772266","NPM1"="#117777","HR2"="#7c1a29","INT1"="#114477","HR3"="#cd9bbc","INT2"= "#88CCAA","LR1"="#117744","LR2"="#77AADD"))+
+  scale_fill_manual(values=c("UHR"="#1f0000","HR1"="#9B2226","NPM1"="#94D2BD","HR2"="#BB3E03","INT2"="#E9D8A6","HR3"="#CA6702","INT1"= "#EE9B00","LR1"="#0A9396","LR2"="#005F73"))+
   xlab("Genes") +
   ylab("Sum of mutations") +
   theme_minimal() +

@@ -3,6 +3,26 @@
 <head>
 <meta charset="utf-8" />
 <title>sankeyNetwork</title>
+<style type="text/css">@layer htmltools {
+.html-fill-container {
+display: flex;
+flex-direction: column;
+
+min-height: 0;
+min-width: 0;
+}
+.html-fill-container > .html-fill-item {
+
+flex: 1 1 auto;
+min-height: 0;
+min-width: 0;
+}
+.html-fill-container > :not(.html-fill-item) {
+
+flex: 0 0 auto;
+}
+}
+</style>
 <script>(function() {
   // If window.HTMLWidgets is already defined, then use it; otherwise create a
   // new object. This allows preceding code to set options that affect the
@@ -1575,9 +1595,9 @@ return function(){for(var n=0,e=0;e<t;++e)n+=Math.random();return n}},um=functio
 </head>
 <body style="background-color: white;">
 <div id="htmlwidget_container">
-  <div class="sankeyNetwork html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-dce9a2bc979b20a6457f" style="width:960px;height:500px;"></div>
+  <div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-dd9fb27249a60e126de4" style="width:960px;height:500px;"></div>
 </div>
-<script type="application/json" data-for="htmlwidget-dce9a2bc979b20a6457f">{"x":{"links":{"source":[0,2,1,4,7,5,6,3,8,0,2,1,4,7,5,6,3,8,0,2,1,4,7,6,3,0,2,1,4,7,5,6,3,8,0,2,1,4,7,5,6,3,8,0,2,1,4,7,5,6,3,8,0,2,1,4,7,5,6,3,8,0,2,1,4,7,5,6,3,8,0,2,1,4,7,5,6,3,8],"target":[9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,13,13,13,13,13,13,13,13,13,14,14,14,14,14,14,14,14,14,15,15,15,15,15,15,15,15,15,16,16,16,16,16,16,16,16,16,17,17,17,17,17,17,17,17,17],"value":[297,1,2,38,20,11,15,174,13,564,3,271,18,25,10,12,12,6,157,375,594,1,1,1,7,292,1,14,72,28,21,11,94,8,184,220,308,8,4,5,11,5,1,41,1,15,103,44,48,37,72,14,183,4,235,103,205,114,94,89,36,56,4,28,66,181,48,75,12,64,16,1,19,92,735,127,208,38,300]},"nodes":{"name":["ELN2022_adverse","ELN2022_intermediate","ELN2022_favorable","IPSSM_Very-High","IPSSM_High","IPSSM_Moderate-High","IPSSM_Moderate-Low","IPSSM_Low","IPSSM_Very-Low","UHR","HR1","NPM1","HR2","INT1","HR3","INT2","LR1","LR2"],"group":["ELN2022_adverse","ELN2022_intermediate","ELN2022_favorable","IPSSM_Very-High","IPSSM_High","IPSSM_Moderate-High","IPSSM_Moderate-Low","IPSSM_Low","IPSSM_Very-Low","UHR","HR1","NPM1","HR2","INT1","HR3","INT2","LR1","LR2"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal() .domain([\"UHR\",\"HR1\",\"NPM1\",\"HR2\",\"INT1\",\"HR3\",\"INT2\",\"LR1\",\"LR2\",\"ELN2022_adverse\",\"ELN2022_intermediate\",\"ELN2022_favorable\",\"IPSSM_Very-High\", \"IPSSM_High\", \"IPSSM_Moderate-High\",\"IPSSM_Moderate-Low\",\"IPSSM_Low\", \"IPSSM_Very-Low\"]) .range([\"#000000\",\"#772266\",\"#117777\",\"#7c1a29\",\"#114477\",\"#cd9bbc\",\"#88CCAA\",\"#117744\",\"#77AADD\",\"#202020\",\"#774411\",\"#DDAA77\",\"#440154\", \"#453581\",\"#34618D\",\"#24878E\",\"#88CCAA\",\"#77CC77\"])","fontSize":24,"fontFamily":"sans-serif","nodeWidth":25,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":0,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
-<script type="application/htmlwidget-sizing" data-for="htmlwidget-dce9a2bc979b20a6457f">{"viewer":{"width":450,"height":350,"padding":10,"fill":true},"browser":{"width":960,"height":500,"padding":10,"fill":true}}</script>
+<script type="application/json" data-for="htmlwidget-dd9fb27249a60e126de4">{"x":{"links":{"source":[0,2,1,4,7,5,6,3,8,0,2,1,4,7,5,6,3,8,0,2,1,4,7,5,6,3,8,0,2,1,4,7,5,6,3,8,0,2,1,4,7,5,6,3,8,0,2,1,4,7,5,6,3,8,0,2,1,4,7,6,3,0,2,1,4,7,5,6,3,8,0,2,1,4,7,5,6,3,8],"target":[9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,13,13,13,13,13,13,13,13,13,14,14,14,14,14,14,14,14,14,15,15,15,15,15,15,15,16,16,16,16,16,16,16,16,16,17,17,17,17,17,17,17,17,17],"value":[297,1,2,38,20,11,15,174,13,564,3,271,18,25,10,12,12,6,292,1,14,72,28,21,11,94,8,41,1,15,103,44,48,37,72,14,183,4,235,103,205,114,94,89,36,184,220,308,8,4,5,11,5,1,157,375,594,1,1,1,7,56,4,28,66,181,48,75,12,64,16,1,19,92,735,127,208,38,300]},"nodes":{"name":["ELN2022_adverse","ELN2022_intermediate","ELN2022_favorable","IPSSM_Very-High","IPSSM_High","IPSSM_Moderate-High","IPSSM_Moderate-Low","IPSSM_Low","IPSSM_Very-Low","UHR","HR1","HR2","HR3","INT1","INT2","NPM1","LR1","LR2"],"group":["ELN2022_adverse","ELN2022_intermediate","ELN2022_favorable","IPSSM_Very-High","IPSSM_High","IPSSM_Moderate-High","IPSSM_Moderate-Low","IPSSM_Low","IPSSM_Very-Low","UHR","HR1","HR2","HR3","INT1","INT2","NPM1","LR1","LR2"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal() .domain([\"UHR\",\"HR1\",\"HR2\",\"HR3\",\"INT1\",\"INT2\",\"NPM1\",\"LR1\",\"LR2\",\"ELN2022_adverse\",\"ELN2022_intermediate\",\"ELN2022_favorable\",\"IPSSM_Very-High\", \n\"IPSSM_High\", \"IPSSM_Moderate-High\",\"IPSSM_Moderate-Low\",\"IPSSM_Low\", \"IPSSM_Very-Low\"]) .range([\"#2f0000\",\"#9B2226\",\"#BB3E03\",\"#CA6702\",\"#EE9B00\",\"#E9D8A6\",\"#94D2BD\",\"#0A9396\",\"#005F73\",\"#202020\",\"#774411\",\"#DDAA77\",\"#440154\", \"#453581\",\"#34618D\",\"#24878E\",\"#88CCAA\",\"#77CC77\"])","fontSize":24,"fontFamily":"sans-serif","nodeWidth":25,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":0,"sinksRight":true}},"evals":[],"jsHooks":[]}</script>
+<script type="application/htmlwidget-sizing" data-for="htmlwidget-dd9fb27249a60e126de4">{"viewer":{"width":450,"height":350,"padding":10,"fill":true},"browser":{"width":960,"height":500,"padding":10,"fill":true}}</script>
 </body>
 </html>

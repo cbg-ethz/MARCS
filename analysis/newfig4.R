@@ -51,7 +51,7 @@ survdata$WHO_2022 <- as.factor(survdata$WHO_2022)
 survdata$ELN2022_IPSSM <- as.factor(survdata$ELN2022_IPSSM)
 survdata$Cluster <- cluster_res$clustermembership
 survdata$Cluster <- as.factor(survdata$Cluster)
-lab <- c("UHR","HR1","NPM1","HR2","INT1","HR3","INT2","LR1","LR2")
+lab <- c("UHR","HR1","NPM1","HR2","INT2","HR3","INT1","LR1","LR2")
 levels(survdata$Cluster) <- lab #LETTERS[1:length(unique(survdata$Cluster))]
 survdata <- survdata[!(survdata$ELN2022_IPSSM) %in% "IPSSM_NA",]
 
@@ -90,7 +90,7 @@ for(i in unique(survdata$ELN2022_IPSSM)){
   
   # 
   # 
-  colours_clusters <- c("red", "#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
+  colours_clusters <- c("red","#2f0000","#9B2226","#94D2BD","#BB3E03","#E9D8A6","#CA6702","#EE9B00","#0A9396","#005F73") # "#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
   
   #plot(survfit(Surv(time = as.numeric(time), event = as.numeric(event)) ~ group, data = clinical), col=colourysdots, ylab='Survival probability', xlab='Survival (years)', mark.time = T)
   #legend(x = 12.9, y = 1.0, legend = paste(levels(clinical$group), sep=' '), pch = 15, col=colourysdots, cex=1, ncol = 2,title="Cluster", bg='white')
@@ -168,7 +168,7 @@ nb.cols <- length(unique(cluster_res$clustermembership))
 
 # 
 # 
-colours_clusters <- c("red", "#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
+colours_clusters <- c("red", "#2f0000","#9B2226","#94D2BD","#BB3E03","#E9D8A6","#CA6702","#EE9B00","#0A9396","#005F73") #"#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
 
 #plot(survfit(Surv(time = as.numeric(time), event = as.numeric(event)) ~ group, data = clinical), col=colourysdots, ylab='Survival probability', xlab='Survival (years)', mark.time = T)
 #legend(x = 12.9, y = 1.0, legend = paste(levels(clinical$group), sep=' '), pch = 15, col=colourysdots, cex=1, ncol = 2,title="Cluster", bg='white')
@@ -257,7 +257,7 @@ nb.cols <- length(unique(cluster_res$clustermembership))
 
 # 
 # 
-colours_clusters <- c("red", "#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
+colours_clusters <- c("red","#2f0000","#9B2226","#94D2BD","#BB3E03","#E9D8A6","#CA6702","#EE9B00","#0A9396","#005F73") #"#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
 
 #plot(survfit(Surv(time = as.numeric(time), event = as.numeric(event)) ~ group, data = clinical), col=colourysdots, ylab='Survival probability', xlab='Survival (years)', mark.time = T)
 #legend(x = 12.9, y = 1.0, legend = paste(levels(clinical$group), sep=' '), pch = 15, col=colourysdots, cex=1, ncol = 2,title="Cluster", bg='white')
@@ -335,7 +335,7 @@ nb.cols <- length(unique(cluster_res$clustermembership))
 
 # 
 # 
-colours_clusters <- c("red", "#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
+colours_clusters <- c("red", "#2f0000","#9B2226","#94D2BD","#BB3E03","#E9D8A6","#CA6702","#EE9B00","#0A9396","#005F73")#"#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
 
 #plot(survfit(Surv(time = as.numeric(time), event = as.numeric(event)) ~ group, data = clinical), col=colourysdots, ylab='Survival probability', xlab='Survival (years)', mark.time = T)
 #legend(x = 12.9, y = 1.0, legend = paste(levels(clinical$group), sep=' '), pch = 15, col=colourysdots, cex=1, ncol = 2,title="Cluster", bg='white')
@@ -413,7 +413,7 @@ nb.cols <- length(unique(cluster_res$clustermembership))
 
 # 
 # 
-colours_clusters <- c("red", "#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
+colours_clusters <- c("red", "#2f0000","#9B2226","#94D2BD","#BB3E03","#E9D8A6","#CA6702","#EE9B00","#0A9396","#005F73") #"#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
 
 #plot(survfit(Surv(time = as.numeric(time), event = as.numeric(event)) ~ group, data = clinical), col=colourysdots, ylab='Survival probability', xlab='Survival (years)', mark.time = T)
 #legend(x = 12.9, y = 1.0, legend = paste(levels(clinical$group), sep=' '), pch = 15, col=colourysdots, cex=1, ncol = 2,title="Cluster", bg='white')
@@ -461,7 +461,11 @@ ggarrange( p$ELN2022_adverse,
 dev.off() 
 
 
-
+pdf(file = "../../forposter_fig3.pdf", width = 16.7, height = 5)
+ggarrange( p$ELN2022_adverse, 
+           p$ELN2022_intermediate,p$ELN2022_favorable,
+           ncol = 3, nrow = 1 , labels = letters[3:6])
+dev.off() 
 
 ##### CREATE A COMBI FIGURE
 
@@ -549,7 +553,7 @@ nb.cols <- length(unique(cluster_res$clustermembership))
 
 # 
 # 
-colours_clusters <- c("red", "#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
+colours_clusters <- c("red", "#2f0000","#9B2226","#94D2BD","#BB3E03","#E9D8A6","#CA6702","#EE9B00","#0A9396","#005F73")#"#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
 
 b <- c()
 
@@ -624,7 +628,7 @@ nb.cols <- length(unique(cluster_res$clustermembership))
 
 # 
 # 
-colours_clusters <- c("red", "#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
+colours_clusters <- c("red", "#2f0000","#9B2226","#94D2BD","#BB3E03","#E9D8A6","#CA6702","#EE9B00","#0A9396","#005F73") #"#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
 
 #plot(survfit(Surv(time = as.numeric(time), event = as.numeric(event)) ~ group, data = clinical), col=colourysdots, ylab='Survival probability', xlab='Survival (years)', mark.time = T)
 #legend(x = 12.9, y = 1.0, legend = paste(levels(clinical$group), sep=' '), pch = 15, col=colourysdots, cex=1, ncol = 2,title="Cluster", bg='white')
@@ -702,7 +706,7 @@ nb.cols <- length(unique(cluster_res$clustermembership))
 
 # 
 # 
-colours_clusters <- c("red", "#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
+colours_clusters <- c("red", "#2f0000","#9B2226","#94D2BD","#BB3E03","#E9D8A6","#CA6702","#EE9B00","#0A9396","#005F73") #"#000000","#772266","#117777","#771122aa","#114477","#CC99BBcc","#88CCAA","#117744","#77AADD")
 
 #plot(survfit(Surv(time = as.numeric(time), event = as.numeric(event)) ~ group, data = clinical), col=colourysdots, ylab='Survival probability', xlab='Survival (years)', mark.time = T)
 #legend(x = 12.9, y = 1.0, legend = paste(levels(clinical$group), sep=' '), pch = 15, col=colourysdots, cex=1, ncol = 2,title="Cluster", bg='white')
@@ -751,3 +755,8 @@ ggarrange( p$ELN2022_adverse,
            ncol = 3, nrow = 3 , labels = letters[1:9])
 dev.off() 
 
+pdf(file = "../../forposter_fig_combi.pdf", width = 16.7, height = 10)
+ggarrange( p$ELN2022_adverse, 
+           p$ELN2022_intermediate,p$ELN2022_favorable,a[[3]], b[[3]],b[[1]],
+           ncol = 3, nrow = 2 , labels = letters[1:9])
+dev.off() 

@@ -195,24 +195,25 @@ colnames(melted_data)[1] <- "Cluster"
 # Reshape the data for stacked barplot (sum of mutations)
 melted_data_sum <- melt(mutation_sum, id.vars = "Group.1")
 colnames(melted_data_sum)[1] <- "Cluster"
-levels(melted_data_sum$Cluster) <- LETTERS[1:length(unique(cluster_results$clustermembership))]
-
-melted_data_sum$Cluster[melted_data_sum$Cluster=="1"] <- "A"
-melted_data_sum$Cluster[melted_data_sum$Cluster=="2"] <- "B"
-melted_data_sum$Cluster[melted_data_sum$Cluster=="3"] <- "C"
-melted_data_sum$Cluster[melted_data_sum$Cluster=="4"] <- "D"
-melted_data_sum$Cluster[melted_data_sum$Cluster=="5"] <- "E"
-melted_data_sum$Cluster[melted_data_sum$Cluster=="6"] <- "F"
-melted_data_sum$Cluster[melted_data_sum$Cluster=="7"] <- "G"
-melted_data_sum$Cluster[melted_data_sum$Cluster=="8"] <- "H"
-melted_data_sum$Cluster[melted_data_sum$Cluster=="9"] <- "I"
-
+lab <- c("UHR","HR1","NPM1","HR2","INT1","HR3","INT2","LR1","LR2")
+levels(melted_data_sum$Cluster) <- lab # LETTERS[1:length(unique(cluster_results$clustermembership))]
+# 
+melted_data_sum$Cluster[melted_data_sum$Cluster=="1"] <- "UHR"
+melted_data_sum$Cluster[melted_data_sum$Cluster=="2"] <- "HR1"
+melted_data_sum$Cluster[melted_data_sum$Cluster=="3"] <- "NPM1"
+melted_data_sum$Cluster[melted_data_sum$Cluster=="4"] <- "HR2"
+melted_data_sum$Cluster[melted_data_sum$Cluster=="5"] <- "INT1"
+melted_data_sum$Cluster[melted_data_sum$Cluster=="6"] <- "HR3"
+melted_data_sum$Cluster[melted_data_sum$Cluster=="7"] <- "INT2"
+melted_data_sum$Cluster[melted_data_sum$Cluster=="8"] <- "LR1"
+melted_data_sum$Cluster[melted_data_sum$Cluster=="9"] <- "LR2"
+# 
 
 colours_clusters <- c("#000000","#772266","#117777","#7c1a29","#114477","#cd9bbc","#88CCAA","#117744","#77AADD")
 # Stacked barplot (sum of mutations)
 barplot_sum0 <- ggplot(melted_data_sum, aes(x = variable, y = value, fill = Cluster)) +
   geom_bar(stat = "identity") +
-  scale_fill_manual(values=c("A"="#000000","B"="#772266","C"="#117777","D"="#7c1a29","E"="#114477","F"="#cd9bbc","G"= "#88CCAA","H"="#117744","I"="#77AADD"))+
+  scale_fill_manual(values=c("UHR"="#000000","HR1"="#772266","NPM1"="#117777","HR2"="#7c1a29","INT1"="#114477","HR3"="#cd9bbc","INT2"= "#88CCAA","LR1"="#117744","LR2"="#77AADD"))+
   xlab("Genes") +
   ylab("Sum of mutations") +
   theme_minimal() +
@@ -241,7 +242,7 @@ mutation_covariate_data <- readRDS("../validation//aml_data.rds")
 
 # merge features
 clinical$group <- as.factor(cluster_results$clustermembership)
-levels(clinical$group) <- LETTERS[1:9]
+levels(clinical$group) <- c("UHR","HR1","NPM1","HR2","INT1","HR3","INT2","LR1","LR2")
 
 clinical$type <- mutation_covariate_data$Dx
 clinical$gender <- mutation_covariate_data$Gender
@@ -393,7 +394,7 @@ km_aml <- ggsurvplot(
   os_aml,                     # survfit object with calculated statistics.
   data = filtered_clinical_aml,             # data used to fit survival curves.
   palette = colours_clusters[which(levels(clinical_aml_mds$group) %in% sort(as.character(unique(filtered_clinical_aml$group))))], # personalized colours
-  legend.labs = sort(as.character(unique(filtered_clinical_aml$group))), 
+  #legend.labs = sort(as.character(unique(filtered_clinical_aml$group))), 
   risk.table = TRUE,       # show risk table.
   pval = T,             # show p-value of log-rank test.
   conf.int = F,         # show confidence intervals for 
@@ -437,7 +438,7 @@ km_mds <- ggsurvplot(
   os_mds,                     # survfit object with calculated statistics.
   data = filtered_clinical_mds,             # data used to fit survival curves.
   palette = colours_clusters[which(levels(clinical_aml_mds$group) %in% sort(as.character(unique(filtered_clinical_mds$group))))], # personalized colours
-  legend.labs = sort(as.character(unique(filtered_clinical_mds$group))), 
+  #legend.labs = sort(as.character(unique(filtered_clinical_mds$group))), 
   risk.table = TRUE,       # show risk table.
   pval = T,             # show p-value of log-rank test.
   conf.int = F,         # show confidence intervals for 
@@ -459,12 +460,6 @@ km_mds <- ggsurvplot(
   risk.table.y.text = FALSE # show bars instead of names in text annotations
   # in legend of risk table
 ); km_mds
-
-
-
-
-
-
 
 
 pdf(file = "../validation/validation.pdf", width = 16.7, height = 20)

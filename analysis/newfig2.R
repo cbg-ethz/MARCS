@@ -303,8 +303,9 @@ mutation_covariate_data <- read.csv("../data/undivided_binary_only_matrix_6k.csv
 survdata <- read.csv("../data/diagCorrected_aml_mds_matrix_8k_new.csv")
 survdata$clustermembership <- cluster_res$clustermembership
 survdata$clustermembership <- as.factor(survdata$clustermembership)
-lab <- c("UHR","HR1","NPM1","HR2","INT1","HR3","INT2","LR1","LR2")
+lab <- c("UHR","HR1","NPM1","HR2","INT2","HR3","INT1","LR1","LR2")
 levels(survdata$clustermembership) <- lab #LETTERS[1:length(unique(cluster_res$clustermembership))]
+survdata$clustermembership <- factor(survdata$clustermembership, levels=c("UHR","HR1","HR2","HR3","INT1","INT2","NPM1","LR1","LR2"))
 
 survdata <- survdata[!survdata$ELN2022_IPSSM == "IPSSM_NA",]
 survdata <- survdata[!survdata$IPSSR_ELN == "IPSSR_NA",]
@@ -321,7 +322,7 @@ links <- as.data.frame(table(sankeydata))
 # Create a nodes data frame
 nodes <- data.frame(name = unique(c(as.character(sankeydata$risk), as.character(sankeydata$sample_memberships))))
 nodes$id <- 0:(nrow(nodes) - 1)
-roworder <-c("ELN2022_adverse","ELN2022_intermediate","ELN2022_favorable","IPSSM_Very-High", "IPSSM_High", "IPSSM_Moderate-High","IPSSM_Moderate-Low","IPSSM_Low", "IPSSM_Very-Low",lab)
+roworder <-c("ELN2022_adverse","ELN2022_intermediate","ELN2022_favorable","IPSSM_Very-High", "IPSSM_High", "IPSSM_Moderate-High","IPSSM_Moderate-Low","IPSSM_Low", "IPSSM_Very-Low","UHR","HR1","HR2","HR3","INT1","INT2","NPM1","LR1","LR2")
 nodes <- nodes[match(roworder, nodes$name), ] 
 
 
@@ -332,7 +333,10 @@ links$Target <- c(match(links$sample_memberships, nodes$name) - 1)
 links$Target <- match(links$sample_memberships, nodes$name) - 1
 links <- links[links$Freq!=0,]
 
-my_color <- 'd3.scaleOrdinal() .domain(["UHR","HR1","NPM1","HR2","INT1","HR3","INT2","LR1","LR2","ELN2022_adverse","ELN2022_intermediate","ELN2022_favorable","IPSSM_Very-High", "IPSSM_High", "IPSSM_Moderate-High","IPSSM_Moderate-Low","IPSSM_Low", "IPSSM_Very-Low"]) .range(["#000000","#772266","#117777","#7c1a29","#114477","#cd9bbc","#88CCAA","#117744","#77AADD","#202020","#774411","#DDAA77","#440154", "#453581","#34618D","#24878E","#88CCAA","#77CC77"])'
+my_color <- 'd3.scaleOrdinal() .domain(["UHR","HR1","HR2","HR3","INT1","INT2","NPM1","LR1","LR2","ELN2022_adverse","ELN2022_intermediate","ELN2022_favorable","IPSSM_Very-High", 
+"IPSSM_High", "IPSSM_Moderate-High","IPSSM_Moderate-Low","IPSSM_Low", "IPSSM_Very-Low"]) .range(["#2f0000","#9B2226","#BB3E03","#CA6702","#EE9B00","#E9D8A6","#94D2BD","#0A9396","#005F73","#202020","#774411","#DDAA77","#440154", "#453581","#34618D","#24878E","#88CCAA","#77CC77"])'
+
+c("#2f0000","#9B2226","#BB3E03","#CA6702","#EE9B00","#E9D8A6","#94D2BD","#0A9396","#005F73")
 
 #"A", "B", "C","D","E","F","G","H","I"
 #"#000000","#774411","#DDAA77","#ed2124","#114477","#CC99BB","#88CCAA","#117744","#77AADD"
@@ -354,6 +358,8 @@ saveNetwork(sankeyPlot, "../results/sn.html")
 
 library(webshot)
 # you convert it as png
+webshot("../results/sn.html","../../forposter1.png", vwidth = 500, vheight = 1500)
+
 webshot("../results/sn.html","./figures/newfig2a.png", vwidth = 900, vheight = 1500)
 
 

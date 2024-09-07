@@ -72,13 +72,13 @@ server <- function(input, output, session) {
     if (input$age <= 0 || is.na(input$age) ) {
       errorMessages <- paste(errorMessages, "Age cannot be negative or empty.", sep = "\n")
     }
-    if (input$HB <= 0 || is.na(input$HB) ) {
+    if (is.na(input$HB) || input$HB <= 0) {
       errorMessages <- paste(errorMessages, "Hemoglobin must be > 0 and cannot be empty.", sep = "\n")
     }
     if (input$HB > 20) {
       errorMessages <- paste(errorMessages, "Enter Hemoglobin concentration in g/dL, not g/L", sep = "\n")
     }
-    if (input$PLT <= 0|| is.na(input$PLT) ) {
+    if (input$PLT <= 0 || is.na(input$PLT) ) {
       errorMessages <- paste(errorMessages, "Platelets must be > 0 and cannot be empty.", sep = "\n")
     }
     if (input$PLT > 2000) {
@@ -110,9 +110,9 @@ server <- function(input, output, session) {
       validata_temp$AGE <- as.numeric(input$age)
       validata_temp$SEX <- input$sex
       validata_temp$BM_BLASTS <- input$BM_BLASTS
-      validata_temp$HB <- input$HB
-      validata_temp$PLT <- input$PLT
-      validata_temp$WBC <- input$WBC
+      validata_temp$HB <- as.numeric(input$HB)
+      validata_temp$PLT <- as.numeric(input$PLT)
+      validata_temp$WBC <- as.numeric(input$WBC)
 
       resultsData$clinical_data = data.frame(
         Variable = c("Age","Sex","BM Blasts","HB","PLT","WBC"),
@@ -213,9 +213,9 @@ server <- function(input, output, session) {
                 ),
                 box(title = "Clinical Information", status = "warning", solidHeader = TRUE, collapsible = TRUE,
                     sliderInput("BM_BLASTS", "BM_BLASTS", min = 0, max = 100, value = 10),
-                    numericInput("HB", "HB [g/dL]", value = NA, min = 0.01), #, max=20),
-                    numericInput("PLT", HTML(paste0("PLT [10",tags$sup("9"),"/L]")), value = NA, min = 0.01), # max=2000),
-                    numericInput("WBC", HTML(paste0("WBC [10",tags$sup("9"),"/L]")), value = NA, min = 0.01), # max=200)
+                    numericInput("HB", "HB [g/dL]", value = 0 , min = 0.01, max=20),
+                    numericInput("PLT", HTML(paste0("PLT [10",tags$sup("9"),"/L]")), value = 0, min = 0, max=2000),
+                    numericInput("WBC", HTML(paste0("WBC [10",tags$sup("9"),"/L]")), value = 0, min = 0.01,  max=200)
                 ),
                 box(title = "Gene Mutations", status = "info", solidHeader = TRUE, width = 12,
                     div(style = "height:200px; overflow-y: scroll;",

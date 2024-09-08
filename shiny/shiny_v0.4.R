@@ -65,7 +65,8 @@ server <- function(input, output, session) {
   resultsData <- reactiveValues(myindex = NULL, error = FALSE)
 
   observeEvent(input$submit, {
-
+    
+    
     errorMessages <- ""
 
     # Check each condition and append an error message if the condition is met
@@ -268,13 +269,14 @@ server <- function(input, output, session) {
 
 
   output$images <- renderUI({
+    if (!displayState()) {
     # Ensure myindex is not NULL or an empty value before trying to display images
       tagList(
         # Display images one under the other, adjusting the height to fit the screen if necessary
         # Assuming images are stored in the www directory, adjust paths if different
         img(src = paste0("kaplan_maier/KM_",resultsData$myclass,".png"), style = "width:100%; height: auto; display: block;"), #, style = "width:50%; height:auto; display: block;")
       )
-
+    }
   })
 
 
